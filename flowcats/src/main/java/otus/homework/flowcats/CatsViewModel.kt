@@ -7,13 +7,14 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import otus.homework.flowcats.Result
 
 class CatsViewModel(
     private val catsRepository: CatsRepository
 ) : ViewModel() {
 
-    private val _state = MutableStateFlow(Fact("", 0))
-    val State: StateFlow<Fact> = _state
+    private val _state = MutableStateFlow<Result>(Result.Success(Fact("", 0)))
+    val State: StateFlow<Result> = _state
 
     init {
         viewModelScope.launch {
